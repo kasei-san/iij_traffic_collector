@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'mechanize'
 require 'json'
+require "slack-notifier"
 
 agent = Mechanize.new
 agent.get('https://www.iijmio.jp/auth/login.jsp') do |page|
@@ -40,4 +41,9 @@ Net::HTTP.new(uri.host, uri.port).tap do |http|
     }].to_json
     response = http.request(request)
   end
+end
+
+if ENV['WEBHOOK_URL']
+  # 5GBプラン固定
+  Slack::Notifier.new(ENV['WEBHOOK_URL']).ping("今月の通信量 : #{usage/1000.0}/5GB")
 end

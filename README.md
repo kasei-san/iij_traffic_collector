@@ -11,7 +11,10 @@ IIJ_ID
 IIJ_PASS
 MACKEREL_API_KEY
 MACKEREL_POST_URI
+WEBHOOK_URL
 ```
+
+- `WEBHOOK_URL` は任意
 
 ```
 bundle exec main.rb
@@ -31,6 +34,7 @@ heroku config:set IIJ_ID=********
 heroku config:set IIJ_PASS=********
 heroku config:set MACKEREL_API_KEY=********
 heroku config:set MACKEREL_POST_URI=********
+heroku config:set WEBHOOK_URL=********
 ```
 
 ## 動作確認
