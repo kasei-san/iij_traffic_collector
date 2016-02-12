@@ -25,7 +25,7 @@ agent.get('https://www.iijmio.jp/service/setup/hdd/viewdata/execute.do') do |pag
   end
 end
 
-uri = URI.parse(ENV['MACKEREL_URI'])
+uri = URI.parse(ENV['MACKEREL_POST_URI'])
 Net::HTTP.new(uri.host, uri.port).tap do |http|
   http.use_ssl = true
   Net::HTTP::Post.new(
@@ -39,7 +39,5 @@ Net::HTTP.new(uri.host, uri.port).tap do |http|
       value: usage * 1000 * 1000
     }].to_json
     response = http.request(request)
-    p response
-    p response.body
   end
 end
